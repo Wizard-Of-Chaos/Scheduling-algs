@@ -17,13 +17,21 @@ Scheduler::~Scheduler()
     }
 }
 
-void Scheduler::tick() 
+void Scheduler::algorithm() 
+//Virtual function; default case is FCFS. Just goes through the list.
+//In class extensions, this should be the thing that changes - just sorting the list, really.
 {
-    ++current_time; //The universe continues on for another microsecond.
     if(current_process == nullptr) {
         current_process = waiting.front();
         waiting.pop_front();
     }
+
+}
+
+void Scheduler::tick() 
+{
+    ++current_time; //The universe continues on for another microsecond.
+    algorithm(); //updates the waitlist
 
     //Updates all processes history based on their runtime.
     for(Process* p : processes) {
@@ -48,7 +56,6 @@ void Scheduler::tick()
         } else { //If it hasn't started and isn't done, add a period.
             p->history += '.';
         }
-
 
         if(p->runtime == p->duration && !p->complete) {
             p->complete = true;

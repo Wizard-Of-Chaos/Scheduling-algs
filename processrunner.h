@@ -19,7 +19,8 @@ class Scheduler {
     public:
         Scheduler(vector<Process*> new_p);
         ~Scheduler();
-        virtual void tick();
+        virtual void algorithm();
+        void tick();
         bool done() {return is_done;};
         int time() {return current_time;};
         vector<Process*> processes;
