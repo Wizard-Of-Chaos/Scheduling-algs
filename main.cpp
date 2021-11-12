@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include <vector>
 #include "processrunner.h"
@@ -20,17 +21,37 @@ vector<Process*> randprocesses()
     return processes;
 }
 
+vector<Process*> readFile(string filename){
+	string line;
+	vector<Process*> processList;
+	ifstream pfile;
+	pfile.open(filename);
+	while(getline(pfile, line)){
+		//add processes from file into the processList
+		cout << line; //testing reading from file
+	}
+}
+
 int main(int argc, char** argv)
 {
-    Scheduler scheduler(randprocesses());
+	cout << argv[1];
+	if(string(argv[1]) == "-r"){
+		Scheduler scheduler(randprocesses());
+		while(!scheduler.done()) {
+			scheduler.tick();
+		}
 
-    while(!scheduler.done()) {
-        scheduler.tick();
-    }
+		for(Process* p : scheduler.processes) {
+			cout << "Process " << p->name << ": " << p->history << endl;
+		}
+		cout << "Total time: " << scheduler.time() << " ticks." << endl;
 
-    for(Process* p : scheduler.processes) {
-        cout << "Process " << p->name << ": " << p->history << endl;
-    }
-    cout << "Total time: " << scheduler.time() << " ticks." << endl;
+		return 0;
+	}
+
+	if(argv[1] != NULL){
+		//read from file
+		vector<Process*> processes = readFile(string(argv[1]));
+	} 
     return 0;
 }
