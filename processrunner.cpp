@@ -2,7 +2,7 @@
 
 using namespace std;
 
-ProcessRunner::ProcessRunner(vector<Process*> new_p)
+Scheduler::Scheduler(vector<Process*> new_p)
 {
     processes = new_p;
     current_time = 0;
@@ -10,14 +10,14 @@ ProcessRunner::ProcessRunner(vector<Process*> new_p)
     is_done = false;
 }
 
-ProcessRunner::~ProcessRunner()
+Scheduler::~Scheduler()
 {
     for(Process* p : processes) {
         delete p;
     }
 }
 
-void ProcessRunner::addTime() 
+void Scheduler::tick() 
 {
     ++current_time; //The universe continues on for another microsecond.
     if(current_process == nullptr) {

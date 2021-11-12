@@ -22,10 +22,10 @@ vector<Process*> randprocesses()
 
 int main(int argc, char** argv)
 {
-    ProcessRunner scheduler(randprocesses());
+    Scheduler scheduler(randprocesses());
 
     while(!scheduler.done()) {
-        scheduler.addTime();
+        scheduler.tick();
     }
 
     for(Process* p : scheduler.processes) {

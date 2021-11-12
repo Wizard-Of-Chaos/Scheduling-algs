@@ -15,11 +15,11 @@ struct Process {
     string history;
 };
 
-class ProcessRunner {
+class Scheduler {
     public:
-        ProcessRunner(vector<Process*> new_p);
-        ~ProcessRunner();
-        void addTime();
+        Scheduler(vector<Process*> new_p);
+        ~Scheduler();
+        virtual void tick();
         bool done() {return is_done;};
         int time() {return current_time;};
         vector<Process*> processes;
