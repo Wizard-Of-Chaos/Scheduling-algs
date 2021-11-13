@@ -12,8 +12,8 @@ vector<Process*> randprocesses()
     for(int i = 0; i < 5; ++i) {
         Process* p = new Process;
         p->name = "rand" + to_string(i);
-        p->start = rand() % 20;
-        p->duration = rand() % 20 + 4;
+        p->start = rand() % 30;
+        p->duration = rand() % 40 + 2;
         cout << "Created process " << p->name << ": starts at " << p->start <<", duration " << p->duration << endl;
         processes.push_back(p);
     }

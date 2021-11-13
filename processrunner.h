@@ -18,15 +18,24 @@ struct Process {
 class Scheduler {
     public:
         Scheduler(vector<Process*> new_p);
+        Scheduler();
         ~Scheduler();
         virtual void algorithm();
-        void tick();
+        virtual void tick();
         bool done() {return is_done;};
         int time() {return current_time;};
         vector<Process*> processes;
-    private:
+    protected:
         Process* current_process;
         list<Process*> waiting;
         bool is_done;
         int current_time;
+};
+
+class RRScheduler : public Scheduler {
+    public:
+        virtual void algorithm();
+        RRScheduler(vector<Process*> new_p);
+    protected:
+        int turn;
 };

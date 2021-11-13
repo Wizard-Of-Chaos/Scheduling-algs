@@ -2,6 +2,13 @@
 
 using namespace std;
 
+Scheduler::Scheduler()
+{
+    current_time = 0;
+    current_process = nullptr;
+    is_done = false;
+}
+
 Scheduler::Scheduler(vector<Process*> new_p)
 {
     processes = new_p;
@@ -66,4 +73,28 @@ void Scheduler::tick()
         if(!p->complete) return; //If even a single process isn't done, we're outta here.
     }
     is_done = true;
+}
+
+//ROUND ROBIN SCHEDULER
+RRScheduler::RRScheduler(vector<Process*> new_p)
+{
+    processes = new_p;
+    current_process = nullptr;
+    current_time = 0;
+    is_done = false;
+    turn = 0;
+}
+
+void RRScheduler::algorithm() {
+    if(current_process == nullptr) {
+        current_process = waiting.front();
+        waiting.pop_front();
+    }
+    ++turn;
+    if(turn == 5) {
+        waiting.push_back(current_process);
+        current_process = waiting.front();
+        waiting.pop_front();
+        turn = 0;
+    }
 }
