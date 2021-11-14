@@ -26,6 +26,7 @@ class Scheduler {
         int time() {return current_time;};
         vector<Process*> processes;
     protected:
+        int turn;
         Process* current_process;
         list<Process*> waiting;
         bool is_done;
@@ -36,6 +37,4 @@ class RRScheduler : public Scheduler {
     public:
         virtual void algorithm();
         RRScheduler(vector<Process*> new_p);
-    protected:
-        int turn;
 };

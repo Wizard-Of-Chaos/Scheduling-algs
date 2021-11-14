@@ -28,7 +28,7 @@ void Scheduler::algorithm()
 //Virtual function; default case is FCFS. Just goes through the list.
 //In class extensions, this should be the thing that changes - just sorting the list, really.
 {
-    if(current_process == nullptr) {
+    if(current_process == nullptr && waiting.size() > 0) {
         current_process = waiting.front();
         waiting.pop_front();
     }
@@ -39,13 +39,13 @@ void Scheduler::tick()
 {
     ++current_time; //The universe continues on for another microsecond.
     algorithm(); //updates the waitlist
-
     //Updates all processes history based on their runtime.
     for(Process* p : processes) {
         if (p->complete) { //If the process is done, add a space.
             p->history += ' ';
         }else if (p == current_process) { //If it's the current process, add an X.
             p->history += 'X';
+
             ++p->runtime;
         }else if (p->ready) { //If it's ready, but not the current process, add a pipe.
             p->history += '-';
@@ -67,7 +67,9 @@ void Scheduler::tick()
         if(p->runtime == p->duration && !p->complete) {
             p->complete = true;
             current_process = nullptr;
+            turn = 0;
         }
+        //cin.get();
     }
     for(Process* p : processes) {
         if(!p->complete) return; //If even a single process isn't done, we're outta here.
@@ -86,7 +88,7 @@ RRScheduler::RRScheduler(vector<Process*> new_p)
 }
 
 void RRScheduler::algorithm() {
-    if(current_process == nullptr) {
+    if(current_process == nullptr && waiting.size() > 0) {
         current_process = waiting.front();
         waiting.pop_front();
     }
