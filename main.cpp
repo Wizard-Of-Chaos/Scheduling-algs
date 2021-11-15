@@ -4,8 +4,14 @@
 #include <vector>
 #include <stdlib.h>
 #include "processrunner.h"
+#include <getopt.h>
 
 using namespace std;
+
+const struct option long_options[] = {
+	{"roundrobin", no_argument, 0, 'a'},
+	{"random", required_argument, 0, 'b'},
+};
 
 vector<Process*> randprocesses() 
 {
@@ -35,7 +41,7 @@ vector<Process*> readFile(string filename){
 
 int main(int argc, char** argv)
 {
-	cout << argv[1];
+	/*cout << argv[1];
 	if(string(argv[1]) == "-r"){
 		Scheduler scheduler(randprocesses());
 		while(!scheduler.done()) {
@@ -53,6 +59,24 @@ int main(int argc, char** argv)
 	if(argv[1] != NULL){
 		//read from file
 		vector<Process*> processes = readFile(string(argv[1]));
-	} 
+	}*/
+
+	int index;
+	int iarg = 0;
+	opterr = 1; // stops errors
+	while(iarg != -1){
+		iarg = getopt_long(argc, argv, "b:a", long_options, &index); 
+		//the string in there is just the accepted args from the struct earlier;
+		//the colon sas it needs an argument
+		switch(iarg){
+			case 'a':
+				//round robin
+				break;
+			case 'b':
+				int amount_of_threads = iarg; //optarg or iarg? 
+				break;
+		}
+	}
+		 
     return 0;
 }
