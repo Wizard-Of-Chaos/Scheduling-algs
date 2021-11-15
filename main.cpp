@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include "processrunner.h"
 #include <getopt.h>
+#include <unistd.h>
 
 using namespace std;
 
@@ -67,13 +68,14 @@ int main(int argc, char** argv)
 	while(iarg != -1){
 		iarg = getopt_long(argc, argv, "b:a", long_options, &index); 
 		//the string in there is just the accepted args from the struct earlier;
-		//the colon sas it needs an argument
+		//the colon say it needs an argument
 		switch(iarg){
 			case 'a':
 				//round robin
+				cout << "round robin" << endl;
 				break;
 			case 'b':
-				int amount_of_threads = iarg; //optarg or iarg? 
+				int amount_of_threads = atoi(optarg);
 				break;
 		}
 	}
