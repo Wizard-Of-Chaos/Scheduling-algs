@@ -16,7 +16,8 @@ vector<Process*> randprocesses(int amt)
         Process* p = new Process;
         p->name = "rand" + to_string(i);
         p->start = rand() % 30;
-        p->duration = (rand() % 40) + 2;
+        p->duration = (rand() % 40);
+        ++p->duration;
         cout << "Created process " << p->name << ": starts at " << p->start <<", duration " << p->duration << endl;
         processes.push_back(p);
     }
@@ -108,6 +109,7 @@ int main(int argc, char** argv)
           if(OPTARG_IS_PRESENT) {
             readFile(optarg, processes);
           }
+          scheduler = new HRRNScheduler(processes);
           break;
         }
       case 'd': //SJF
@@ -115,6 +117,7 @@ int main(int argc, char** argv)
           if(OPTARG_IS_PRESENT) {
             readFile(optarg, processes);
           }
+          scheduler = new SJFScheduler(processes);
           break;
         }
       case 'e': //SJR
@@ -122,6 +125,7 @@ int main(int argc, char** argv)
           if(OPTARG_IS_PRESENT) {
             readFile(optarg, processes);
           }
+          scheduler = new SJRScheduler(processes);
           break;
         }
     }
@@ -138,8 +142,18 @@ int main(int argc, char** argv)
   while(!scheduler->done()) {
     scheduler->tick();
   }
-  for(Process* p : scheduler->processes) {
-    cout << p->history << endl;
+  int len = processes[0]->history.size();
+  for(int i = 0; i < len; ++i) {
+    cout << i;
+    if(i < 10) cout << "     ";
+    else if(i >= 10 && i < 100) cout << "    ";
+    else if(i >= 100 && i < 1000) cout << "   ";
+    else cout << "  ";
+
+    for(Process* p : processes) {
+      cout << p->history[i] << " ";
+    }
+    cout << endl;
   }
   cout << "Total time: " << scheduler->time() << " ticks." << endl;
   delete scheduler;
