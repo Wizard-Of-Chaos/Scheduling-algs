@@ -12,6 +12,7 @@ struct Process {
     bool complete = false;
     bool ready = false;
     int runtime = 0;
+	int waiting = 0;
     string history;
 };
 
@@ -43,6 +44,8 @@ class HRRNScheduler : public Scheduler {
 	public:
 		virtual void algorithm();
 		HRRNScheduler(vector<Process*> new_p);
+		void HRRNSort(list<Process*> waiting);
+		protected:
 };
 
 class SJFScheduler : public Scheduler {
