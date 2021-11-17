@@ -100,3 +100,13 @@ void RRScheduler::algorithm() {
         turn = 0;
     }
 }
+
+//HIGHEST RESPONSE RATE NEXT (HRRN) SCHEDULER
+/*HRRNScheduler::HRRNScheduler(vector<Process*> new_p)
+{
+	processes = new_p;
+	current_process = nullptr;
+	current_time = 0;
+	is_done = false;
+	turn = 0;
+}*/

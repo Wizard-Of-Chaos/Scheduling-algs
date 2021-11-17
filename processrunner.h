@@ -38,3 +38,21 @@ class RRScheduler : public Scheduler {
         virtual void algorithm();
         RRScheduler(vector<Process*> new_p);
 };
+
+class HRRNScheduler : public Scheduler {
+	public:
+		virtual void algorithm();
+		HRRNScheduler(vector<Process*> new_p);
+};
+
+class SJFScheduler : public Scheduler {
+	public: 
+		virtual void algorithm();
+		SJFScheduler(vector<Process*> new_p);
+};
+
+class SJRScheduler : public Scheduler {
+	public: 
+		virtual void algorithm();
+		SJRScheduler(vector<Process*> new_p);
+};
