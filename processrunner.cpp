@@ -102,11 +102,44 @@ void RRScheduler::algorithm() {
 }
 
 //HIGHEST RESPONSE RATE NEXT (HRRN) SCHEDULER
-/*HRRNScheduler::HRRNScheduler(vector<Process*> new_p)
+HRRNScheduler::HRRNScheduler(vector<Process*> new_p)
 {
 	processes = new_p;
 	current_process = nullptr;
 	current_time = 0;
 	is_done = false;
 	turn = 0;
-}*/
+}
+
+void HRRNScheduler::algorithm()
+{
+
+}
+
+//SHORTEST JOB FIRST (SJF) SCHEDULER
+SJFScheduler::SJFScheduler(vector<Process*> new_p)
+{
+	processes = new_p;
+	current_process = nullptr;
+	current_time = 0;
+	is_done = false;
+	turn = 0;
+}
+
+void SJFScheduler::algorithm(){
+
+}
+
+//SHORTEST JOB REMAINING (SJR) SCHEDULER
+SJRScheduler::SJRScheduler(vector<Process*> new_p)
+{
+	processes = new_p;
+	current_process = nullptr;
+	current_time =0;
+	is_done = false;
+	turn = 0;
+}
+
+void SJRScheduler::algorithm(){
+	
+}
