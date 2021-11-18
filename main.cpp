@@ -142,8 +142,10 @@ int main(int argc, char** argv)
   while(!scheduler->done()) {
     scheduler->tick();
   }
-  int len = processes[0]->history.size();
-  for(int i = 0; i < len; ++i) {
+  double avg = 0;
+  int totalwait = 0;
+
+  for(int i = 0; i < processes[0]->history.size(); ++i) {
     cout << i;
     if(i < 10) cout << "     ";
     else if(i >= 10 && i < 100) cout << "    ";
@@ -155,7 +157,11 @@ int main(int argc, char** argv)
     }
     cout << endl;
   }
-  cout << "Total time: " << scheduler->time() << " ticks." << endl;
+
+  for(Process* p : processes) {
+    totalwait += p->waittime;
+  }
+  cout << "Makespan: " << scheduler->time() << " ticks." << endl;
   delete scheduler;
   return 0;
 }

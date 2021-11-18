@@ -46,7 +46,6 @@ class HRRNScheduler : public Scheduler {
 	public:
 		virtual void algorithm();
 		HRRNScheduler(vector<Process*> new_p);
-		void HRRNSort(list<Process*> waiting);
 		protected:
 };
 

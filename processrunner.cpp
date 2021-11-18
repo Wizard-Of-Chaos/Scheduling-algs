@@ -116,17 +116,6 @@ HRRNScheduler::HRRNScheduler(vector<Process*> new_p)
 	turn = 0;
 }
 
-void HRRNScheduler::algorithm()
-{
-	//sort list
-	waiting.sort(HRRNSort);
-	if(current_process == nullptr && waiting.size() > 0){
-		current_process = waiting.front();
-		waiting.pop_front();	
-	}
-			
-}
-
 bool HRRNSort(Process* first, Process* second){
 	int proc1 = (first->waittime + first->duration) / first->duration;
 	int proc2 = (second->waittime + second->duration) / second->duration;
@@ -137,6 +126,16 @@ bool HRRNSort(Process* first, Process* second){
 	}					
 }
 
+void HRRNScheduler::algorithm()
+{
+	//sort list
+	waiting.sort(HRRNSort);
+	if(current_process == nullptr && waiting.size() > 0){
+		current_process = waiting.front();
+		waiting.pop_front();	
+	}
+			
+}
 //SHORTEST JOB FIRST (SJF) SCHEDULER
 SJFScheduler::SJFScheduler(vector<Process*> new_p)
 {
