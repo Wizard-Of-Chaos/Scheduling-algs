@@ -47,6 +47,7 @@ void Scheduler::tick()
             p->history += 'X';
             ++turn;
             ++p->runtime;
+            ++exectime;
         }else if (p->ready) { //If it's ready, but not the current process, add a pipe.
             p->history += '|';
             ++p->waittime;
@@ -70,6 +71,7 @@ void Scheduler::tick()
             p->complete = true;
             current_process = nullptr;
             turn = 0;
+            ++completed;
         }
         //cin.get();
     }

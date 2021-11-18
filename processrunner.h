@@ -25,6 +25,8 @@ class Scheduler {
         virtual void tick();
         bool done() {return is_done;};
         int time() {return current_time;};
+        int completed = 0;
+        int exectime = 0;
         vector<Process*> processes;
     protected:
         int turn;
