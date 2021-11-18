@@ -12,7 +12,7 @@ struct Process {
     bool complete = false;
     bool ready = false;
     int runtime = 0;
-	int waiting = 0;
+    int waittime = 0;
     string history;
 };
 
