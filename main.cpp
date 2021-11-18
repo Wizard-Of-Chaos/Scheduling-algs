@@ -88,9 +88,8 @@ int main(int argc, char** argv)
         }
       case 'a'://FCFS
         {
-          cout << "FCFS algorithm selected." << endl;
+          cout << "FCFS" << endl;
           if(OPTARG_IS_PRESENT) {
-            cout << "Included file." << endl;
             readFile(optarg, processes);
           }
           scheduler = new Scheduler(processes);
@@ -98,6 +97,7 @@ int main(int argc, char** argv)
         }
       case 'b': //Round Robin
         {
+          cout << "Round Robin" << endl;
           if(OPTARG_IS_PRESENT) {
             readFile(optarg, processes);
           }
@@ -106,6 +106,7 @@ int main(int argc, char** argv)
         }
       case 'c': //HRRN
         {
+          cout << "HRRN" << endl;
           if(OPTARG_IS_PRESENT) {
             readFile(optarg, processes);
           }
@@ -114,6 +115,7 @@ int main(int argc, char** argv)
         }
       case 'd': //SJF
         {
+          cout << "SJF" << endl;
           if(OPTARG_IS_PRESENT) {
             readFile(optarg, processes);
           }
@@ -122,6 +124,7 @@ int main(int argc, char** argv)
         }
       case 'e': //SJR
         {
+          cout << "SJR" << endl;
           if(OPTARG_IS_PRESENT) {
             readFile(optarg, processes);
           }
