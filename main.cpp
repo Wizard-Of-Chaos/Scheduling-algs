@@ -144,7 +144,7 @@ int main(int argc, char** argv)
   }
   double avg = 0;
   int totalwait = 0;
-
+  int totalexec = 0;
   for(int i = 0; i < processes[0]->history.size(); ++i) {
     cout << i;
     if(i < 10) cout << "     ";
@@ -157,16 +157,16 @@ int main(int argc, char** argv)
     }
     cout << endl;
   }
-
   for(Process* p : processes) {
     totalwait += p->waittime;
+    totalexec += p->waittime + p->runtime;
   }
   totalwait = (double)totalwait / (double)processes.size();
   cout << "Makespan: " << scheduler->time() << " ticks." << endl;
   cout << "Average wait time: " << totalwait << " ticks." << endl;
   cout << "Throughput: " << (double)scheduler->completed / (double)scheduler->exectime << "." << endl;
   cout << "CPU use time: " << (double)scheduler->exectime / (double)scheduler->time() << "." << endl;
-  cout << "Total exec time: " << scheduler->exectime << " ticks." << endl;
+  cout << "Total exec time: " << totalexec << " ticks." << endl;
   delete scheduler;
   return 0;
 }
