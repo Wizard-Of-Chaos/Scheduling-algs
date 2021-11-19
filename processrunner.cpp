@@ -146,8 +146,23 @@ SJFScheduler::SJFScheduler(vector<Process*> new_p)
 	turn = 0;
 }
 
-void SJFScheduler::algorithm(){
+bool SJFSort(Process* first, Process* second){
+	int proc1 = first->duration;
+	int proc2 = second->duration;
+	if(proc1 < proc2){
+		return true;
+	}else{
+		return false;
+	}
+}
+	
 
+void SJFScheduler::algorithm(){
+	waiting.sort(SJFSort);
+	if(current_process == nullptr && waiting.size() > 0){
+		current_process = waiting.front();
+		waiting.pop_front();
+	}
 }
 
 //SHORTEST JOB REMAINING (SJR) SCHEDULER
@@ -161,5 +176,14 @@ SJRScheduler::SJRScheduler(vector<Process*> new_p)
 }
 
 void SJRScheduler::algorithm(){
-	
+	waiting.sort(SJFSort);
+	if(current_process == nullptr && waiting.size() > 0){
+		int timeRemaining = waiting.front()->duration - waiting.front()->runtime;
+		int currentTR = current_process->duration - current_process->runtime;
+		if(timeRemaining < currentTR){
+			waiting.push_back(current_process);
+			current_process = waiting.front();
+			waiting.pop_front();
+		}
+	}	
 }
