@@ -117,8 +117,8 @@ HRRNScheduler::HRRNScheduler(vector<Process*> new_p)
 }
 
 bool HRRNSort(Process* first, Process* second){
-	int proc1 = (first->waittime + first->duration) / first->duration;
-	int proc2 = (second->waittime + second->duration) / second->duration;
+	double proc1 = (first->waittime + first->duration) / first->duration;
+	double proc2 = (second->waittime + second->duration) / second->duration;
 	if(proc1 > proc2){
 		return true;
 	}else{
