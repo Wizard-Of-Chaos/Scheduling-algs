@@ -147,6 +147,7 @@ SJFScheduler::SJFScheduler(vector<Process*> new_p)
 }
 
 bool SJFSort(Process* first, Process* second){
+        if(first == nullptr || second == nullptr) return false;
 	int proc1 = first->duration;
 	int proc2 = second->duration;
 	if(proc1 < proc2){
@@ -177,13 +178,16 @@ SJRScheduler::SJRScheduler(vector<Process*> new_p)
 
 void SJRScheduler::algorithm(){
 	waiting.sort(SJFSort);
+        if(current_process != nullptr && waiting.front() != nullptr) {
+          if(current_process->duration > waiting.front()->duration) {
+            waiting.push_back(current_process);
+            current_process = waiting.front();
+            waiting.pop_front();
+          }
+        }
 	if(current_process == nullptr && waiting.size() > 0){
-		int timeRemaining = waiting.front()->duration - waiting.front()->runtime;
-		int currentTR = current_process->duration - current_process->runtime;
-		if(timeRemaining < currentTR){
-			waiting.push_back(current_process);
-			current_process = waiting.front();
-			waiting.pop_front();
-		}
-	}	
+          waiting.push_back(current_process);
+          current_process = waiting.front();
+          waiting.pop_front();
+	}
 }
