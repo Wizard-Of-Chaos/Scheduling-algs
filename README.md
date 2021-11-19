@@ -51,7 +51,7 @@
  Written by Alexander Wiecking and Shyheim Williams.
 
  ALEXANDER WIECKING:
- Wrote out initial scheduler implementation as well as the Round Robin algorithm / FCFS and the stats. Also random processes.
+ Wrote out initial scheduler implementation as well as the Round Robin algorithm / FCFS and the stats. Also random processes and test cases.
 
  SHYHEIM WILLIAMS:
- Wrote out file input, command line args, HRRN, SJR, and SJF algorithm.
+ Wrote out file input, command line args, HRRN, SJR, and SJF algorithm and test cases.
