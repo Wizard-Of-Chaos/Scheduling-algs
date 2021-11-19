@@ -1,0 +1,6 @@
+Thorgrim 1 40
+Ungrim 3 5
+Thorek 7 4
+Bugman 2 9
+Gotrek 16 3
+
