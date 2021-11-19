@@ -1,0 +1,3 @@
+Aang 1 10
+Katara 50 10
+Sokka 49 5

@@ -54,4 +54,4 @@
  Wrote out initial scheduler implementation as well as the Round Robin algorithm / FCFS and the stats. Also random processes.
 
  SHYHEIM WILLIAMS:
- Wrote out file input, command line args, and HRRN algorithm.
+ Wrote out file input, command line args, HRRN, SJR, and SJF algorithm.
